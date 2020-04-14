@@ -5,7 +5,6 @@ module CoinsPaid
     class CallbackData < Dry::Struct
       NOT_CONFIRMED = 'not_confirmed'
       CANCELLED = 'cancelled'
-      TNX_TYPE_BLOCKCHAIN = 'blockchain'
 
       attribute :id, Types::Integer
       attribute :foreign_id, Types::String
@@ -19,6 +18,7 @@ module CoinsPaid
 
       attribute? :transactions, Types::Array do
         attribute :transaction_type, Types::String
+        attribute :type, Types::String
         attribute :id, Types::Integer
       end
 
@@ -34,10 +34,6 @@ module CoinsPaid
       def self.from_json(attributes)
         attributes[:foreign_id] ||= attributes.dig(:crypto_address, :foreign_id)
         new(attributes)
-      end
-
-      def blockchain_trx_id
-        transactions.find { |tr| tr.transaction_type == TNX_TYPE_BLOCKCHAIN }.id
       end
 
       def pending?
