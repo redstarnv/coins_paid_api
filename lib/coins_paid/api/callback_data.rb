@@ -7,7 +7,7 @@ module CoinsPaid
       CANCELLED = 'cancelled'
 
       attribute :id, Types::Integer
-      attribute :foreign_id, Types::String
+      attribute? :foreign_id, Types::String
       attribute? :type, Types::String
       attribute? :status, Types::String
       attribute? :error, Types::Coercible::String
