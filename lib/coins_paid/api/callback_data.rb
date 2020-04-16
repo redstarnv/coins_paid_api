@@ -12,7 +12,7 @@ module CoinsPaid
       attribute? :status, Types::String
       attribute? :error, Types::Coercible::String
 
-      attribute :crypto_address do
+      attribute? :crypto_address do
         attribute :currency, Types::String
       end
 
@@ -32,7 +32,7 @@ module CoinsPaid
       end
 
       def self.from_json(attributes)
-        attributes[:foreign_id] ||= attributes.dig(:crypto_address, :foreign_id)
+        attributes[:foreign_id] ||= attributes.dig(:crypto_address, :foreign_id) || ''
         new(attributes)
       end
 

@@ -122,4 +122,24 @@ describe CoinsPaid::API, '.callback' do
 
     it { is_expected.to be_struct_with_params(CoinsPaid::API::CallbackData, expected_params) }
   end
+
+  context 'when request_body is exchange callback data' do
+    let(:request_body) { exchange_callback_body.to_json }
+    let(:expected_params) do
+      {
+        id: 3268590,
+        type: 'exchange',
+        status: 'confirmed',
+        foreign_id: '',
+        error: '',
+        currency_sent: { amount: "0.56114000"},
+        currency_received: { amount: "80.21790617"},
+        transactions: [
+          { transaction_type: 'exchange', type: 'exchange', id: 714576 },
+        ]
+      }
+    end
+
+    it { is_expected.to be_struct_with_params(CoinsPaid::API::CallbackData, expected_params) }
+  end
 end

@@ -199,4 +199,33 @@ shared_context 'coins paid callbacks' do
       'status' => 'cancelled'
     }
   end
+
+  let(:exchange_callback_body) do
+    {
+      'currency_received' => {
+        'amount' => '80.21790617',
+        'currency' => 'EUR'
+      },
+      'currency_sent' => {
+        'amount' => '0.56114000',
+        'currency' => 'ETH'
+      },
+      'error' => '',
+      'fees' => [{'type'=>'fee_crypto_sell_for_fiat', 'currency'=>'EUR', 'amount'=>'0.80217906'}],
+      'id' => 3268590,
+      'status' => 'confirmed',
+      'transactions' => [
+        {
+          'id'=>714576,
+          'currency'=>'ETH',
+          'currency_to'=>'EUR',
+          'transaction_type'=>'exchange',
+          'type'=>'exchange',
+          'amount'=>'0.56114000',
+          'amount_to'=>'80.21790617'
+        }
+      ],
+      'type' => 'exchange'
+    }
+  end
 end
