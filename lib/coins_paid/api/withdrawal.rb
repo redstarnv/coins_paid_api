@@ -9,6 +9,7 @@ module CoinsPaid
         attribute :currency, Types::String
         attribute :convert_to, Types::String
         attribute :address, Types::String
+        attribute? :tag, Types::String
       end
 
       class Response < Dry::Struct
