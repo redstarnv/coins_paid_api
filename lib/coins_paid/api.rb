@@ -42,11 +42,8 @@ module CoinsPaid
       )
     end
 
-    def withdraw(foreign_id:, amount:, currency:, convert_to:, address:)
-      Requester.call(
-        Withdrawal,
-        foreign_id: foreign_id, amount: amount, currency: currency, convert_to: convert_to, address: address
-      )
+    def withdraw(data)
+      Requester.call(Withdrawal, data)
     end
 
     def currencies_list

@@ -2,15 +2,9 @@
 
 require_relative './request_examples'
 
-describe CoinsPaid::API, '.withdraw' do
+RSpec.shared_examples 'CoinsPaid API withdrawal' do |request_data:|
   endpoint = 'https://app.coinspaid.com/api/v2/withdrawal/crypto'
-  request_data = {
-    foreign_id: 'user-id:2048',
-    amount: '0.01',
-    currency: 'EUR',
-    convert_to: 'BTC',
-    address: 'abc123'
-  }
+
   include_context 'CoinsPaid API request', request_data: request_data
 
   let(:response_data) do
@@ -46,5 +40,23 @@ describe CoinsPaid::API, '.withdraw' do
     it 'returns valid response' do
       expect(withdraw).to be_struct_with_params(CoinsPaid::API::Withdrawal::Response, expected_withdrawal_attributes)
     end
+  end
+end
+
+describe CoinsPaid::API, '.withdraw' do
+  base_request_data = {
+    foreign_id: 'user-id:2048',
+    amount: '0.01',
+    currency: 'EUR',
+    convert_to: 'BTC',
+    address: 'abc123'
+  }
+
+  context 'request includes tag parameter' do
+    it_behaves_like 'CoinsPaid API withdrawal', request_data: base_request_data.merge(tag: 'thetag')
+  end
+
+  context 'request does not include tag parameter' do
+    it_behaves_like 'CoinsPaid API withdrawal', request_data: base_request_data
   end
 end
