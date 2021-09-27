@@ -12,7 +12,7 @@ module CoinsPaid
       class Response < Dry::Struct
         attribute :external_id, Types::Integer
         attribute :address, Types::String
-        attribute :tag, Types::String.optional
+        attribute :tag, Types::Coercible::String.optional
       end
 
       PATH = 'addresses/take'

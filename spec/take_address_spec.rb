@@ -15,7 +15,7 @@ describe CoinsPaid::API, '.take_address' do
     {
       external_id: 1,
       address: '12983h13ro1hrt24it432t',
-      tag: 'tag-123'
+      tag: '123'
     }
   end
   subject(:take_address) { described_class.take_address(request_data) }
@@ -27,7 +27,7 @@ describe CoinsPaid::API, '.take_address' do
         'currency' => 'BTC',
         'convert_to' => 'EUR',
         'address' => '12983h13ro1hrt24it432t',
-        'tag' => 'tag-123',
+        'tag' => 123,
         'foreign_id' => 'user-id:2048'
       }
     }
