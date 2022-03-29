@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context 'CoinsPaid API request' do |request_data: {}|
+RSpec.shared_context 'CoinsPaid API request' do
   let(:signature) { 'c01dc0ffee' }
   let(:request_signature_headers) do
     {
@@ -10,11 +10,11 @@ RSpec.shared_context 'CoinsPaid API request' do |request_data: {}|
   end
 
   before do
-    allow(CoinsPaid::API::Signature).to receive(:generate).with(request_data.to_json).and_return signature
+    allow(CoinsPaid::API::Signature).to receive(:generate).with(request_body).and_return signature
   end
 end
 
-RSpec.shared_examples 'CoinsPaid API error handling' do |endpoint:, request_body: '{}'|
+RSpec.shared_examples 'CoinsPaid API error handling' do
   context 'when coins paid responded with validation errors' do
     let(:response_data) do
       {
