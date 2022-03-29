@@ -1,0 +1,64 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+  SuggestExtensions: false
+
+Naming/MethodParameterName:
+  MinNameLength: 1
+Naming/VariableNumber:
+  Enabled: false
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+Layout/LineLength:
+  Max: 120
+Layout/MultilineOperationIndentation:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Style/AsciiComments:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/LambdaCall:
+  Enabled: false
+Style/ModuleFunction:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%I': '()'
+    '%r': '{}'
+    '%w': '()'
+    '%W': '()'
+Style/SignalException:
+  EnforcedStyle: 'only_raise'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'spec/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'spec/**/*'
+Metrics/MethodLength:
+  Exclude:
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'spec/**/*'
