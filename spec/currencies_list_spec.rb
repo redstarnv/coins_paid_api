@@ -3,7 +3,8 @@
 require_relative './request_examples'
 
 describe CoinsPaid::API, '.currencies_list' do
-  endpoint = 'https://app.coinspaid.com/api/v2/currencies/list'
+  let(:endpoint) { 'https://app.coinspaid.com/api/v2/currencies/list' }
+  let(:request_body) { "{}" }
   include_context 'CoinsPaid API request'
 
   let(:expected_currencies) do
@@ -65,5 +66,5 @@ describe CoinsPaid::API, '.currencies_list' do
     expect(response).to match_array currencies
   end
 
-  it_behaves_like 'CoinsPaid API error handling', endpoint: endpoint
+  it_behaves_like 'CoinsPaid API error handling'
 end

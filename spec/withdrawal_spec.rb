@@ -2,10 +2,10 @@
 
 require_relative './request_examples'
 
-RSpec.shared_examples 'CoinsPaid API withdrawal' do |request_data:|
-  endpoint = 'https://app.coinspaid.com/api/v2/withdrawal/crypto'
+RSpec.shared_examples 'CoinsPaid API withdrawal' do
+  let(:endpoint) { 'https://app.coinspaid.com/api/v2/withdrawal/crypto' }
 
-  include_context 'CoinsPaid API request', request_data: request_data
+  include_context 'CoinsPaid API request'
 
   let(:response_data) do
     {
@@ -44,19 +44,24 @@ RSpec.shared_examples 'CoinsPaid API withdrawal' do |request_data:|
 end
 
 describe CoinsPaid::API, '.withdraw' do
-  base_request_data = {
-    foreign_id: 'user-id:2048',
-    amount: '0.01',
-    currency: 'EUR',
-    convert_to: 'BTC',
-    address: 'abc123'
-  }
+  let(:base_request_data) do
+    {
+      foreign_id: 'user-id:2048',
+      amount: '0.01',
+      currency: 'EUR',
+      convert_to: 'BTC',
+      address: 'abc123'
+    }
+  end
+  let(:request_body) { request_data.to_json }
 
   context 'request includes tag parameter' do
-    it_behaves_like 'CoinsPaid API withdrawal', request_data: base_request_data.merge(tag: 'thetag')
+    let(:request_data) { base_request_data.merge(tag: 'thetag') }
+    it_behaves_like 'CoinsPaid API withdrawal'
   end
 
   context 'request does not include tag parameter' do
-    it_behaves_like 'CoinsPaid API withdrawal', request_data: base_request_data
+    let(:request_data) { base_request_data }
+    it_behaves_like 'CoinsPaid API withdrawal'
   end
 end

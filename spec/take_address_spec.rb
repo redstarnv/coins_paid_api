@@ -3,13 +3,17 @@
 require_relative './request_examples'
 
 describe CoinsPaid::API, '.take_address' do
-  endpoint = 'https://app.coinspaid.com/api/v2/addresses/take'
-  request_data = {
-    foreign_id: 'user-id:2048',
-    currency: 'BTC',
-    convert_to: 'EUR'
-  }
-  include_context 'CoinsPaid API request', request_data: request_data
+  let(:endpoint) { 'https://app.coinspaid.com/api/v2/addresses/take' }
+  let(:request_data) do
+    {
+      foreign_id: 'user-id:2048',
+      currency: 'BTC',
+      convert_to: 'EUR'
+    }
+  end
+  let(:request_body) { request_data.to_json }
+
+  include_context 'CoinsPaid API request'
 
   let(:expected_address_attributes) do
     {
@@ -35,11 +39,11 @@ describe CoinsPaid::API, '.take_address' do
 
   it 'returns valid response if successful' do
     stub_request(:post, endpoint)
-      .with(body: request_data, headers: request_signature_headers)
+      .with(body: request_body, headers: request_signature_headers)
       .to_return(status: 201, body: response_data.to_json)
 
     expect(take_address).to be_struct_with_params(CoinsPaid::API::TakeAddress::Response, expected_address_attributes)
   end
 
-  it_behaves_like 'CoinsPaid API error handling', endpoint: endpoint, request_body: request_data
+  it_behaves_like 'CoinsPaid API error handling'
 end
