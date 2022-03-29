@@ -35,7 +35,7 @@ module CoinsPaid
       yield self
     end
 
-    def take_address(foreign_id:, currency:, convert_to:)
+    def take_address(foreign_id:, currency:, convert_to: nil)
       Requester.call(
         TakeAddress,
         foreign_id: foreign_id, currency: currency, convert_to: convert_to
