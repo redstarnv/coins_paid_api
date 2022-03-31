@@ -42,11 +42,8 @@ describe CoinsPaid::API, '.callback' do
           { transaction_type: 'blockchain', type: 'deposit', id: 714576 },
           { transaction_type: 'exchange', type: 'exchange', id: 714577 }
         ],
-        currency_sent: { amount: '0.01000000' },
-        currency_received: {
-          amount_minus_fee: '90',
-          amount: '84.17070222'
-        }
+        currency_sent: { currency: 'BTC', amount: '0.01000000' },
+        currency_received: { currency: 'EUR', amount_minus_fee: '90', amount: '84.17070222' }
       }
     end
 
@@ -91,10 +88,8 @@ describe CoinsPaid::API, '.callback' do
           { transaction_type: 'exchange', type: 'exchange', id: 1 },
           { transaction_type: 'blockchain', type: 'withdrawal', id: 1 }
         ],
-        currency_sent: { amount: '381' },
-        currency_received: {
-          amount: '0.01000000'
-        }
+        currency_sent: { currency: 'EUR', amount: '381' },
+        currency_received: { currency: 'BTC', amount: '0.01000000' }
       }
     end
 
@@ -132,8 +127,8 @@ describe CoinsPaid::API, '.callback' do
         status: 'confirmed',
         foreign_id: '',
         error: '',
-        currency_sent: { amount: "0.56114000"},
-        currency_received: { amount: "80.21790617"},
+        currency_sent: { currency: 'ETH', amount: '0.56114000'},
+        currency_received: { currency: 'EUR', amount: '80.21790617'},
         transactions: [
           { transaction_type: 'exchange', type: 'exchange', id: 714576 },
         ]

@@ -23,10 +23,12 @@ module CoinsPaid
       end
 
       attribute? :currency_sent do
+        attribute :currency, Types::String
         attribute :amount, Types::String
       end
 
       attribute? :currency_received do
+        attribute :currency, Types::String
         attribute :amount, Types::String
         attribute? :amount_minus_fee, Types::String
       end
