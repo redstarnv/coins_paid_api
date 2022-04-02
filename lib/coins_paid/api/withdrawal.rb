@@ -7,8 +7,8 @@ module CoinsPaid
         attribute :foreign_id, Types::Coercible::String
         attribute :amount, Types::Coercible::String
         attribute :currency, Types::String
-        attribute :convert_to, Types::String
         attribute :address, Types::String
+        attribute? :convert_to, Types::String
         attribute? :tag, Types::String
       end
 

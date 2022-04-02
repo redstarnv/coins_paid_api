@@ -48,20 +48,24 @@ describe CoinsPaid::API, '.withdraw' do
     {
       foreign_id: 'user-id:2048',
       amount: '0.01',
-      currency: 'EUR',
-      convert_to: 'BTC',
+      currency: 'BTC',
       address: 'abc123'
     }
   end
   let(:request_body) { request_data.to_json }
+
+  context 'request does not include tag parameter or convert_to' do
+    let(:request_data) { base_request_data }
+    it_behaves_like 'CoinsPaid API withdrawal'
+  end
 
   context 'request includes tag parameter' do
     let(:request_data) { base_request_data.merge(tag: 'thetag') }
     it_behaves_like 'CoinsPaid API withdrawal'
   end
 
-  context 'request does not include tag parameter' do
-    let(:request_data) { base_request_data }
+  context 'request includes convert_to' do
+    let(:request_data) { base_request_data.merge(currency: 'EUR', convert_to: 'BTC') }
     it_behaves_like 'CoinsPaid API withdrawal'
   end
 end
