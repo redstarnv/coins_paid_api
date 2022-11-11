@@ -1,0 +1,53 @@
+version: v1.0
+name: Web Application
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+auto_cancel:
+  running:
+    when: "branch != 'master'"
+blocks:
+  - name: Install dependencies
+    task:
+      jobs:
+        - name: Run Bundler
+          commands:
+            - checkout
+            - cache restore gems-$SEMAPHORE_GIT_SHA
+            - sem-version ruby 2.7.5
+            - bundle config set --local path 'vendor/bundle'
+            - bundle install --jobs=4 --retry=3
+            - cache store gems-$SEMAPHORE_GIT_SHA vendor/bundle
+        - name: Download CC
+          commands:
+            - mkdir -p cc/
+            - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-0.7.0-linux-amd64 > ~/cc/cc-test-reporter
+            - chmod +x ~/cc/cc-test-reporter
+            - cache store cc-test-reporter ~/cc/cc-test-reporter
+  - name: Run Tests
+    task:
+      env_vars:
+        - name: COVERAGE
+          value: '1'
+      jobs:
+        - name: Run Rspec
+          commands:
+            - checkout
+            - cache restore cc-test-reporter
+            - cache restore gems-$SEMAPHORE_GIT_SHA
+            - sem-version ruby 2.7.5
+            - bundle config set --local path 'vendor/bundle'
+            - bundle exec rspec spec
+            - ~/cc/cc-test-reporter format-coverage -t simplecov -o ~/cc/codeclimate.rspec.json tmp/coverage/.resultset.json
+            - cache store rspec-report-$SEMAPHORE_GIT_SHA ~/cc/codeclimate.rspec.json
+  - name: Upload CC report
+    task:
+      secrets:
+        - name: private-repo
+      jobs:
+        - name: Upload coverage result
+          commands:
+            - cache restore cc-test-reporter
+            - cache restore rspec-report-$SEMAPHORE_GIT_SHA
+            - ~/cc/cc-test-reporter upload-coverage -i ~/cc/codeclimate.rspec.json

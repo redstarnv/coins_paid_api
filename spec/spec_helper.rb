@@ -1,7 +1,7 @@
 ENV['COINS_PAID_PUBLIC_KEY'] = 'publickey'
 ENV['COINS_PAID_SECRET_KEY'] = 'secretkey'
 
-if ENV['CIRCLE_ARTIFACTS']
+if ENV['COVERAGE']
   require 'simplecov'
   SimpleCov.start
 end
