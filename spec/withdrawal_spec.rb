@@ -25,7 +25,6 @@ RSpec.shared_examples 'CoinsPaid API withdrawal' do
   let(:expected_withdrawal_attributes) do
     {
       external_id: 1,
-      receiver_amount: 0.001
     }
   end
   subject(:withdraw) { described_class.withdraw(request_data) }

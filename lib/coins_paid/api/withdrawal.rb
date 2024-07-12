@@ -14,7 +14,6 @@ module CoinsPaid
 
       class Response < Dry::Struct
         attribute :external_id, Types::Integer
-        attribute :receiver_amount, Types::Coercible::Float
       end
 
       PATH = 'withdrawal/crypto'

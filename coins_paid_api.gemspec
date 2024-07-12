@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'coins_paid_api'
   s.authors = ['Artem Biserov(artembiserov)', 'Oleg Ivanov(morhekil)']
-  s.version = '1.3.0'
+  s.version = '2.0.0'
   s.files = `git ls-files`.split("\n")
   s.summary = 'Coins Paid Integration'
   s.license = 'MIT'
