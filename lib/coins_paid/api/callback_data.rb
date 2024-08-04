@@ -14,6 +14,7 @@ module CoinsPaid
 
       attribute? :crypto_address do
         attribute :currency, Types::String
+        attribute :address, Types::String
       end
 
       attribute? :transactions, Types::Array do

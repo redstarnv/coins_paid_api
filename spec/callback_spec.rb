@@ -36,6 +36,7 @@ describe CoinsPaid::API, '.callback' do
         status: 'confirmed',
         error: '',
         crypto_address: {
+          address: '123abc',
           currency: 'BTC'
         },
         transactions: [
@@ -60,6 +61,7 @@ describe CoinsPaid::API, '.callback' do
         status: 'cancelled',
         error: 'Invalid params: expected a hex-encoded hash with 0x prefix.',
         crypto_address: {
+          address: '123abc',
           currency: 'BTC'
         },
         transactions: [
@@ -82,6 +84,7 @@ describe CoinsPaid::API, '.callback' do
         foreign_id: '20',
         error: '',
         crypto_address: {
+          address: '1k2btnz8cqnfbphaq729mdj8w6g3w2nbbl',
           currency: 'EUR'
         },
         transactions: [
@@ -106,6 +109,7 @@ describe CoinsPaid::API, '.callback' do
         foreign_id: '20',
         error: 'Invalid params: expected a hex-encoded hash with 0x prefix.',
         crypto_address: {
+          address: '1k2btnz8cqnfbphaq729mdj8w6g3w2nbbl',
           currency: 'EUR'
         },
         transactions: [
