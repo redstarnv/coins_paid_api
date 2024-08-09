@@ -21,6 +21,7 @@ module CoinsPaid
         attribute :transaction_type, Types::String
         attribute :type, Types::String
         attribute :id, Types::Integer
+        attribute? :txid, Types::String
       end
 
       attribute? :currency_sent do

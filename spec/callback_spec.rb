@@ -40,7 +40,7 @@ describe CoinsPaid::API, '.callback' do
           currency: 'BTC'
         },
         transactions: [
-          { transaction_type: 'blockchain', type: 'deposit', id: 714576 },
+          { transaction_type: 'blockchain', type: 'deposit', id: 714576, txid: '3a491da90a1ce5a318d0aeff6867ab98a03219abae29ed68d702291703c3538b' },
           { transaction_type: 'exchange', type: 'exchange', id: 714577 }
         ],
         currency_sent: { currency: 'BTC', amount: '0.01000000' },
@@ -65,7 +65,7 @@ describe CoinsPaid::API, '.callback' do
           currency: 'BTC'
         },
         transactions: [
-          { transaction_type: 'blockchain', type: 'deposit', id: 714576 },
+          { transaction_type: 'blockchain', type: 'deposit', id: 714576, txid: '3a491da90a1ce5a318d0aeff6867ab98a03219abae29ed68d702291703c3538b' },
           { transaction_type: 'exchange', type: 'exchange', id: 714577 }
         ]
       }
@@ -89,7 +89,7 @@ describe CoinsPaid::API, '.callback' do
         },
         transactions: [
           { transaction_type: 'exchange', type: 'exchange', id: 1 },
-          { transaction_type: 'blockchain', type: 'withdrawal', id: 1 }
+          { transaction_type: 'blockchain', type: 'withdrawal', id: 1, txid: 'aa3345b96389e126f1ce88a670d1b1e38f2c3f73fb3ecfff8d9da1b1ce6964a6' }
         ],
         currency_sent: { currency: 'EUR', amount: '381' },
         currency_received: { currency: 'BTC', amount: '0.01000000' }
@@ -114,7 +114,7 @@ describe CoinsPaid::API, '.callback' do
         },
         transactions: [
           { transaction_type: 'exchange', type: 'exchange', id: 714576 },
-          { transaction_type: 'blockchain', type: 'withdrawal', id: 714577 }
+          { transaction_type: 'blockchain', type: 'withdrawal', id: 714577, txid: '3a491da90a1ce5a318d0aeff6867ab98a03219abae29ed68d702291703c3538b' }
         ]
       }
     end
